@@ -5,20 +5,6 @@ import (
 	"math"
 )
 
-type Vertex struct {
-	name     string
-	distance int
-	previous *Vertex
-
-	isInfinity bool
-}
-
-type Edge struct {
-	weight      int
-	origin      *Vertex
-	destination *Vertex
-}
-
 /*
  * Relax prend deux noeuds, et un poids.
  * Si le noeud V de destination de notre edge
@@ -62,7 +48,7 @@ func hasNoNegativeCycles(edges []*Edge) bool {
 	return true
 }
 
-func main() {
+func bellmanford() {
 
 	fmt.Println("Bellman-Ford Algorithm")
 
