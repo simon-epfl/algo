@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // on veut partitionner le tableau en deux parties
 // cette fonction réorganise le tableau de telle sorte à ce que les éléments
 // inférieurs ou égaux au pivot soient à gauche et les éléments supérieurs soient à droite
@@ -48,3 +50,10 @@ func quicksort(array []int) {
 
 // problème : le nombre d'appels récursifs dépend du tableau et du pivot!
 // si le tableau est déjà trié, on va faire n appels récursifs!
+
+func runquicksort() {
+	array := []int{5, 8, 4, 7, 1, 2, 3, 6}
+	fmt.Println("Original array:", array)
+	quicksort(array)
+	fmt.Println("Sorted array:", array)
+}
