@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 // on veut partitionner le tableau en deux parties
 // cette fonction réorganise le tableau de telle sorte à ce que les éléments
@@ -30,26 +33,32 @@ func partition(array []int, low, high int) int {
 	return i + 1                                      // la position du pivot
 }
 
+// problème : le nombre d'appels récursifs dépend du tableau et du pivot!
+// si le tableau est déjà trié, on va faire n appels récursifs!
+// solution : choisir un pivot aléatoire
+func betterPartitionRandomPivot(array []int, low, high int) int {
+	// on choisit un pivot aléatoire entre low et high
+	pivotIndex := rand.Intn(high-low+1) + low
+	// on échange le pivot avec le dernier élément
+	array[pivotIndex], array[high] = array[high], array[pivotIndex]
+	return partition(array, low, high) // on appelle la fonction de partitionnement
+}
+
 // slide 8
 // https://moodle.epfl.ch/pluginfile.php/3442098/mod_resource/content/1/Lecture24.pdf
 
-// in-place quicksort
-func quicksort(array []int) {
-
-	if len(array) <= 1 {
-		return // le tableau est déjà trié
+func quicksortRecursive(array []int, low, high int) {
+	if low >= high {
+		return
 	}
-
-	// on choisit un pivot et on partitionne le tableau
-	pivotIndex := partition(array, 0, len(array)-1)
-
-	// on trie récursivement les sous-tableaux à gauche et à droite du pivot
-	quicksort(array[:pivotIndex])
-	quicksort(array[pivotIndex+1:])
+	pivotIndex := betterPartitionRandomPivot(array, low, high)
+	quicksortRecursive(array, low, pivotIndex-1)
+	quicksortRecursive(array, pivotIndex+1, high)
 }
 
-// problème : le nombre d'appels récursifs dépend du tableau et du pivot!
-// si le tableau est déjà trié, on va faire n appels récursifs!
+func quicksort(array []int) {
+	quicksortRecursive(array, 0, len(array)-1)
+}
 
 func runquicksort() {
 	array := []int{5, 8, 4, 7, 1, 2, 3, 6}
