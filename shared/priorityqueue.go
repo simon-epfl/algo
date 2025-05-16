@@ -1,17 +1,17 @@
-package main
+package shared
 
 import "container/heap"
 
 type PriorityItem struct {
-	value    any
-	priority int
+	Value    any
+	Priority int
 	index    int
 }
 
 type PriorityQueue []*PriorityItem
 
 func (h PriorityQueue) Len() int           { return len(h) }
-func (h PriorityQueue) Less(i, j int) bool { return h[i].priority < h[j].priority }
+func (h PriorityQueue) Less(i, j int) bool { return h[i].Priority < h[j].Priority }
 func (h PriorityQueue) Swap(i, j int) {
 	h[i], h[j] = h[j], h[i]
 	h[i].index = i
@@ -19,20 +19,25 @@ func (h PriorityQueue) Swap(i, j int) {
 }
 
 func (h *PriorityQueue) Push(x any) {
-	*h = append(*h, x.(*PriorityItem))
+	n := len(*h)
+	item := x.(*PriorityItem)
+	item.index = n
+	*h = append(*h, item)
 }
 
 func (h *PriorityQueue) Pop() any {
 	old := *h
 	n := len(old)
-	x := old[n-1]
+	item := old[n-1]
+	old[n-1] = nil  // don't stop the GC from reclaiming the item eventually
+	item.index = -1 // for safety
 	*h = old[0 : n-1]
-	return x
+	return item
 }
 
-func (pq *PriorityQueue) update(item *PriorityItem, value any, priority int) {
-	item.value = value
-	item.priority = priority
+func (pq *PriorityQueue) Update(item *PriorityItem, value any, priority int) {
+	item.Value = value
+	item.Priority = priority
 	heap.Fix(pq, item.index)
 }
 

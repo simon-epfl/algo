@@ -1,26 +1,16 @@
 package main
 
 import (
+	sh "algo/shared"
 	"fmt"
-	"math"
 )
 
-func initializeSingleSource(vertices []*Vertex, source *Vertex) {
-	for _, vertex := range vertices {
-		vertex.distance = math.MaxInt
-		vertex.previous = nil
-		vertex.isInfinity = true
-	}
-	source.distance = 0
-	source.isInfinity = false
-}
-
-func hasNoNegativeCycles(edges []*Edge) bool {
+func hasNoNegativeCycles(edges []*sh.Edge) bool {
 	for _, edge := range edges {
 
 		// on est censé avoir une solution optimale mais on trouve encore une meilleure solution
 		// ==> negative cycle
-		if edge.destination.distance > edge.origin.distance+edge.weight {
+		if edge.Destination.Distance > edge.Origin.Distance+edge.Weight {
 			return false
 		}
 	}
@@ -31,22 +21,22 @@ func bellmanford() {
 
 	fmt.Println("Bellman-Ford Algorithm")
 
-	s, t, x, y, z := &Vertex{name: "s"}, &Vertex{name: "t"}, &Vertex{name: "x"}, &Vertex{name: "y"}, &Vertex{name: "z"}
-	vertices := []*Vertex{s, t, x, y, z}
+	s, t, x, y, z := &sh.Vertex{Name: "s"}, &sh.Vertex{Name: "t"}, &sh.Vertex{Name: "x"}, &sh.Vertex{Name: "y"}, &sh.Vertex{Name: "z"}
+	vertices := []*sh.Vertex{s, t, x, y, z}
 
-	initializeSingleSource(vertices, z)
+	sh.InitializeSingleSource(vertices, z)
 
-	edges := []*Edge{
-		{weight: 5, origin: t, destination: x},
-		{weight: 8, origin: t, destination: y},
-		{weight: -4, origin: t, destination: z},
-		{weight: -2, origin: x, destination: t},
-		{weight: -3, origin: y, destination: x},
-		{weight: 9, origin: y, destination: z},
-		{weight: 7, origin: z, destination: x},
-		{weight: 2, origin: z, destination: s},
-		{weight: 6, origin: s, destination: t},
-		{weight: 7, origin: s, destination: y},
+	edges := []*sh.Edge{
+		{Weight: 5, Origin: t, Destination: x},
+		{Weight: 8, Origin: t, Destination: y},
+		{Weight: -4, Origin: t, Destination: z},
+		{Weight: -2, Origin: x, Destination: t},
+		{Weight: -3, Origin: y, Destination: x},
+		{Weight: 9, Origin: y, Destination: z},
+		{Weight: 7, Origin: z, Destination: x},
+		{Weight: 2, Origin: z, Destination: s},
+		{Weight: 6, Origin: s, Destination: t},
+		{Weight: 7, Origin: s, Destination: y},
 	}
 
 	hasAtLeastAnUpdateLastCycle := false
@@ -60,7 +50,7 @@ func bellmanford() {
 	// (parce que (E, T) comme on connaît pas E de toute façon, on peut pas update T)
 	for i := 0; i < len(vertices)-1; i++ {
 		for _, edge := range edges {
-			update := relax(edge)
+			update := sh.Relax(edge)
 			if update {
 				hasAtLeastAnUpdateLastCycle = true
 			}
@@ -75,9 +65,9 @@ func bellmanford() {
 		fmt.Println("On a un negative cycle!")
 	}
 
-	fmt.Printf("Distance de z à s est %d\n", s.distance)
-	fmt.Printf("Distance de z à t est %d\n", t.distance)
-	fmt.Printf("Distance de z à x est %d\n", x.distance)
-	fmt.Printf("Distance de z à y est %d\n", y.distance)
+	fmt.Printf("Distance de z à s est %d\n", s.Distance)
+	fmt.Printf("Distance de z à t est %d\n", t.Distance)
+	fmt.Printf("Distance de z à x est %d\n", x.Distance)
+	fmt.Printf("Distance de z à y est %d\n", y.Distance)
 
 }
