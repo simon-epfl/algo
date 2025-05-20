@@ -13,6 +13,8 @@ func main() {
 		bellmanford()
 	case "quicksort":
 		runquicksort()
+	case "quickselect":
+		quickselect()
 	default:
 		println("Unknown algorithm")
 	}
