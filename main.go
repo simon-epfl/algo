@@ -15,6 +15,8 @@ func main() {
 		runquicksort()
 	case "quickselect":
 		quickselect()
+	case "countingsort":
+		countingsort()
 	default:
 		println("Unknown algorithm")
 	}
