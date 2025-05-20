@@ -26,7 +26,7 @@ func quickselect() {
 
 	nums := []int{3, 6, 8, 10, 0, 2, 1}
 
-	k := 4 // 6ème plus petit élément
+	k := 4 // ème plus petit élément
 
 	result := quickselectHelper(nums, 0, len(nums)-1, k-1)
 	fmt.Println("Le", k, "ème plus petit élément est:", result)
