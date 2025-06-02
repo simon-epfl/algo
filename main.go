@@ -1,12 +1,16 @@
 package main
 
-import "os"
+import (
+	"os"
+)
 
 func main() {
 
 	algoName := os.Args[1]
 
 	switch algoName {
+	case "insertionsort":
+		runinsertionsort()
 	case "dijkstra":
 		dijkstra()
 	case "bellmanford":
