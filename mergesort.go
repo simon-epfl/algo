@@ -43,8 +43,8 @@ func merge(array []int, begin int, middle int, end int) {
 	fmt.Println("Tableau gauche après copie:", L[:n1])
 	fmt.Println("Tableau droit après copie:", R[:n2])
 
-	L[n1] = int(9999999)
-	R[n2] = int(9999999)
+	L[n1] = math.MaxInt
+	R[n2] = math.MaxInt
 
 	i := 0
 	j := 0

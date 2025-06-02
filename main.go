@@ -9,6 +9,8 @@ func main() {
 	algoName := os.Args[1]
 
 	switch algoName {
+	case "maxsubarray":
+		runmaxsubarray()
 	case "mergesort":
 		runmergesort()
 	case "insertionsort":
