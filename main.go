@@ -9,6 +9,8 @@ func main() {
 	algoName := os.Args[1]
 
 	switch algoName {
+	case "heapsort":
+		runheapsort()
 	case "strassen":
 		fallthrough
 	case "matrixmult":
