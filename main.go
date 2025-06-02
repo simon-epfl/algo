@@ -11,6 +11,8 @@ func main() {
 	switch algoName {
 	case "insertionsort":
 		runinsertionsort()
+	case "linearsearch":
+		runlinearsearch()
 	case "dijkstra":
 		dijkstra()
 	case "bellmanford":
