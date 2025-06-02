@@ -51,10 +51,14 @@ func merge(array []int, begin int, middle int, end int) {
 
 	for k := begin; k <= end; k++ {
 		if L[i] <= R[j] {
+			// si L[i] est plus petit ou égal à R[j], on ajoute L[i] à l'index k
+			// on passe à l'index suivant de L
 			fmt.Println("On ajoute l'élément", L[i], "à l'index", k)
 			array[k] = L[i]
 			i = i + 1
 		} else {
+			// ça veut dire que cette fois-ci R[j] est plus petit que L[i], on ajoute R[j] à l'index k
+			// on passe à l'index suivant de R
 			fmt.Println("On ajoute l'élément", R[j], "à l'index", k)
 			array[k] = R[j]
 			j = j + 1
