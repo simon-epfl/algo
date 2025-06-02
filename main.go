@@ -2,13 +2,17 @@ package main
 
 import (
 	"os"
+	"time"
 )
 
 func main() {
 
 	algoName := os.Args[1]
+	startTime := time.Now()
 
 	switch algoName {
+	case "rodcutting":
+		runrodcutting()
 	case "heapsort":
 		runheapsort()
 	case "strassen":
@@ -38,5 +42,9 @@ func main() {
 	default:
 		println("Unknown algorithm")
 	}
+
+	endTime := time.Now()
+	elapsedTime := endTime.Sub(startTime)
+	println("Exec:", elapsedTime.Microseconds(), "µs")
 
 }
