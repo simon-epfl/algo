@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "matrix_chain_mult":
+		runMatrixChain()
 	case "rodcutting":
 		runrodcutting()
 	case "heapsort":
