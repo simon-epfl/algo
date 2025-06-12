@@ -2,6 +2,23 @@ package main
 
 import "fmt"
 
+/*
+On a comme entrées deux matrices carrées, $n times n$ :
+- $A = (a_(i j))$
+- $B = (b_(i j))$
+
+On sort une matrice carrée $n times n$ : $C = (c_(i j))$ où $A dot B = C$.
+
+Example (n = 2)
+
+$$ mat(c_(1 1), c_(1 2); c_(2 1), c_(2 2) ) = mat(a_11, b_11; a_21, a_22) dot mat(b_11, b_12; b_21, b_22) $$
+$$c_11 = a_11 b_11 + a_12 b_21 + ... + a_(1 n) b_(n 1) = sum_(k = 1)^n a_(1 k) b_(k 1)$$
+$$ " Plus généralement, " c_(i j) = sum_(k = 1)^n a_(i k)b_(k j) $$
+
+On peut écrire un algo simple qui en temps $Theta(n^3)$ qui calcule $c_(i j)$ (trois boucles for jusqu'à $n$ qui pour chaque entrée $i, j$ somme tous les produits).
+$arrow$ le temps utilisé par cet algo est $Theta(n^2)$, parce qu'on ne créé par une variable à chaque boucle (pour la dernière boucle qui somme les produits on les ajoute à une variable existante $c_(i j)$).
+*/
+
 func printMatrix(matrix [][]int) {
 	for _, row := range matrix {
 		for _, val := range row {
