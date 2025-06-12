@@ -17,6 +17,12 @@ func mergesort(array []int, begin int, end int) { // p est l'indice du début, r
 	}
 }
 
+/*
+En entrée : un tableau et des indices begin, middle, end
+de telles sortes à ce que A[begin..middle] et A[middle..end] soient triés
+
+En sortie : un tableau complètement trié
+*/
 func merge(array []int, begin int, middle int, end int) {
 	n1 := middle - begin + 1 // la partie à gauche du tableau (triée)
 	n2 := end - middle       // la partie à droite du tableau (triée)
