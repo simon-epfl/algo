@@ -93,3 +93,46 @@ func (t *BinarySearchTree) Insert(content int) {
 		newTree.Parent.Right = newTree
 	}
 }
+
+// Transplant remplace l'arbre U par l'arbre V
+func (t *BinarySearchTree) Transplant(u, v *BinarySearchTree) {
+	if u.Parent == nil { // si u n'a pas de parent, c'était le root
+		*t = *v
+	} else if u == u.Parent.Left { // si u était l'enfant à gauche
+		u.Parent.Left = v // on met v à la place dans le parent
+	} else {
+		u.Parent.Right = v
+	}
+	if v != nil {
+		v.Parent = u.Parent // enfin, on set le parent de v à u
+	}
+}
+
+func (t *BinarySearchTree) Delete(z *BinarySearchTree) {
+
+	// Cas 1 : pas d'enfant à gauche
+	if z.Left == nil {
+		t.Transplant(z, z.Right)
+		return
+	}
+
+	// Cas 2 : pas d'enfant à droite
+	if z.Right == nil {
+		t.Transplant(z, z.Left)
+		return
+	}
+
+	// Case 3 : deux enfants, on cherche le successor
+	successor := z.Successor()
+
+	if successor.Parent != z {
+		t.Transplant(successor, successor.Right)
+		successor.Right = z.Right
+		successor.Right.Parent = successor
+	}
+
+	t.Transplant(z, successor)
+	successor.Left = z.Left
+	successor.Left.Parent = successor
+
+}
