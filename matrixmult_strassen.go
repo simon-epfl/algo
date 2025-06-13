@@ -3,6 +3,21 @@ package main
 import "fmt"
 
 /*
+> [!tip] Sous-problème plus simple, multiplier des nombres complexes
+>
+> $(a + i b) dot (c + i d) = (a dot c - b dot d) + i (a dot d + b dot c) = r$
+>
+> Pour multiplier 2 complexes, on a dû faire 4 produits de nombres réels.
+> Calculons :
+> $s_1 = (a + b) dot (c + d) = a c + a d + b c + b d$
+> $s_2 = a dot c$
+> $s_3 = b dot d$
+>
+> $r = (s_2 - s_3) + i(s_1 - s_2 - s_3)$
+>
+> Maintenant on a un produit de moins nécessaire pour trouver $r$! On a plus d'additions et de soustractions. On peut utiliser le même principe pour les matrices.
+
+/*
 On a comme entrées deux matrices carrées, $n times n$ :
 - $A = (a_(i j))$
 - $B = (b_(i j))$
