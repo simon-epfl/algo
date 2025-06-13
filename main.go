@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "longest_common_seq":
+		runLongestCommonSubsequence()
 	case "matrix_chain_mult":
 		runMatrixChain()
 	case "rodcutting":
