@@ -30,31 +30,33 @@ func (h CustomHeap) Less(i CustomHeapItem, j CustomHeapItem) bool {
 // maintient la propriété de max heap
 // i c'est l'indice tel que tous les subtrees de i sont des heaps valides
 // donc on fait on sait que i c'est l'endroit où il y a un problème
-func (h CustomHeap) maxHeapify(i int) {
+func (h *CustomHeap) maxHeapify(i int) {
 
-	left := h.Left(i)
-	right := h.Right(i)
+	heap := *h
+
+	left := heap.Left(i)
+	right := heap.Right(i)
 
 	// on regarde les enfants de i, est-ce qu'ils sont bons ?
 	// si c'est le cas, on change rien !
 
 	largest := i
 
-	if left < h.Len() && h.Less(h[i], h[left]) {
+	if left < h.Len() && h.Less(heap[i], heap[left]) {
 		// oups ! notre root est plus petit que notre membre à gauche.
 		// on va devoir le faire descendre
 		largest = left
 	}
 
-	if right < h.Len() && h.Less(h[i], h[right]) {
+	if right < heap.Len() && heap.Less(heap[largest], heap[right]) {
 		largest = right
 	}
 
 	if largest != i {
 		// on swap le root avec le membre le plus grand
-		h[i], h[largest] = h[largest], h[i]
+		heap[i], heap[largest] = heap[largest], heap[i]
 
-		h.maxHeapify(largest) // largest c'est la position de notre root qu'on vient de swapper
+		heap.maxHeapify(largest) // largest c'est la position de notre root qu'on vient de swapper
 	}
 
 }
