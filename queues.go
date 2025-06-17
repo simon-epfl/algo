@@ -34,33 +34,20 @@ func (q *CustomQueue) IsEmpty() bool {
 }
 
 func (q *CustomQueue) Enqueue(x CustomQueueItem) {
-	queue := *q
-
-	if queue.IsFull() {
+	if q.IsFull() {
 		panic("queue is full!")
 	}
 
-	queue.items[queue.tail] = x
-	if queue.tail == MAX_CUSTOM_QUEUE_SIZE {
-		queue.tail = 0 // on revient à zéro
-	} else {
-		queue.tail++
-	}
+	q.items[q.tail] = x
+	q.tail = (q.tail + 1) % MAX_CUSTOM_QUEUE_SIZE
 }
 
 func (q *CustomQueue) Dequeue() CustomQueueItem {
-	queue := *q
-
-	if queue.IsEmpty() {
+	if q.IsEmpty() {
 		panic("queue is empty!")
 	}
 
-	item := queue.items[queue.head]
-	if queue.head == MAX_CUSTOM_QUEUE_SIZE {
-		queue.head = 0
-	} else {
-		queue.head++
-	}
-
+	item := q.items[q.head]
+	q.head = (q.head + 1) % MAX_CUSTOM_QUEUE_SIZE
 	return item
 }
