@@ -126,7 +126,8 @@ func (t *BinarySearchTree) Delete(z *BinarySearchTree) {
 	successor := z.Successor()
 
 	if successor.Parent != z {
-		t.Transplant(successor, successor.Right)
+		t.Transplant(successor, successor.Right) // on fait monter l'enfant droit du successor
+		// par définition, le successor n'a pas d'enfant à gauche!! donc on ne s'en préoccupe pas
 		successor.Right = z.Right
 		successor.Right.Parent = successor
 	}
