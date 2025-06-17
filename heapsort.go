@@ -26,7 +26,7 @@ func customHeapSortInts(input []int) []int {
 	return sorted
 }
 
-func runheapsort() {
+func runHeapsort() {
 	unsorted := []int{5, 1, 7, 3, 2, 9, 4}
 	sorted := customHeapSortInts(unsorted)
 	fmt.Println("Non trié:", unsorted)

@@ -9,7 +9,7 @@ func linearsearch(array []int, key int) int {
 	return -1
 }
 
-func runlinearsearch() {
+func runLinearsearch() {
 
 	array := []int{3, 6, 8, 10, 0, 2, 1}
 	key := 10

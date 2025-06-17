@@ -53,7 +53,7 @@ func maxsubarray(array []int, begin int, end int) int {
 	return array[begin]
 }
 
-func runmaxsubarray() {
+func runMaxsubarray() {
 
 	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
 

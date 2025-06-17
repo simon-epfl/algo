@@ -139,7 +139,7 @@ func strassen(matrixA [][]int, matrixB [][]int) [][]int {
 	return matrixmult(matrixA, matrixB)
 }
 
-func runstrassen() {
+func runStrassen() {
 	matrixA := [][]int{
 		{1, 2, 3, 4},
 		{5, 6, 7, 8},

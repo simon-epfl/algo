@@ -26,7 +26,7 @@ func changemaking(amount int, prices []int, cache []int) int {
 
 }
 
-func runchangemaking() {
+func runChangemaking() {
 
 	amount := 11
 	prices := []int{2, 5}

@@ -36,7 +36,7 @@ func rodcutting(prices []int, n int) int {
 
 }
 
-func runrodcutting() {
+func runRodcutting() {
 
 	prices := []int{1, 5, 8, 9, 10, 17, 17, 20, 24, 30}
 

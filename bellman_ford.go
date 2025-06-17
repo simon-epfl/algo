@@ -17,7 +17,7 @@ func hasNoNegativeCycles(edges []*sh.Edge) bool {
 	return true
 }
 
-func bellmanford() {
+func bellmanFord() {
 
 	fmt.Println("Bellman-Ford Algorithm")
 

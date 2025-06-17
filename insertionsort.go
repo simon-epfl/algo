@@ -21,7 +21,7 @@ func insertionsort(array []int) {
 
 }
 
-func runinsertionsort() {
+func runInsertionsort() {
 
 	nums := []int{3, 6, 8, 10, 0, 2, 1}
 

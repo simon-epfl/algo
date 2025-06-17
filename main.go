@@ -14,41 +14,41 @@ func main() {
 	case "optimal_bst":
 		runOptimalBst()
 	case "changemaking":
-		runchangemaking()
+		runChangemaking()
 	case "fibotop":
-		runfibotopdown()
+		runFiboTopdown()
 	case "fibobottom":
-		runfibobottomup()
+		runFiboBottomup()
 	case "fibo":
-		rundumbfibo()
+		runDumbfibo()
 	case "longest_common_seq":
 		runLongestCommonSubsequence()
 	case "matrix_chain_mult":
 		runMatrixChain()
 	case "rodcutting":
-		runrodcutting()
+		runRodcutting()
 	case "heapsort":
-		runheapsort()
+		runHeapsort()
 	case "strassen":
 		fallthrough
 	case "matrixmult":
 		fallthrough
 	case "matrixmult_strassen":
-		runstrassen()
+		runStrassen()
 	case "maxsubarray":
-		runmaxsubarray()
+		runMaxsubarray()
 	case "mergesort":
-		runmergesort()
+		runMergesort()
 	case "insertionsort":
-		runinsertionsort()
+		runInsertionsort()
 	case "linearsearch":
-		runlinearsearch()
+		runLinearsearch()
 	case "dijkstra":
 		dijkstra()
 	case "bellmanford":
-		bellmanford()
+		bellmanFord()
 	case "quicksort":
-		runquicksort()
+		runQuicksort()
 	case "quickselect":
 		quickselect()
 	case "countingsort":

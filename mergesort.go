@@ -74,7 +74,7 @@ func merge(array []int, begin int, middle int, end int) {
 	fmt.Println("Tableau après fusion:", array)
 }
 
-func runmergesort() {
+func runMergesort() {
 	nums := []int{3, 6, 8, 10, 0, 2, 1}
 
 	fmt.Println("Tableau avant le tri:", nums)

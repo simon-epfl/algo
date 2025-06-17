@@ -60,7 +60,7 @@ func quicksort(array []int) {
 	quicksortRecursive(array, 0, len(array)-1)
 }
 
-func runquicksort() {
+func runQuicksort() {
 	array := []int{5, 8, 4, 7, 1, 2, 3, 6}
 	fmt.Println("Original array:", array)
 	quicksort(array)

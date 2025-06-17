@@ -23,7 +23,7 @@ func dumbFibo(n int) int {
 
 func fiboBottomUp(n int) int {
 
-	cache := make([]int, n)
+	cache := make([]int, n+1)
 
 	cache[0] = 1
 	cache[1] = 1
@@ -60,7 +60,7 @@ func fiboTopDown(n int, cache []int) int {
 
 }
 
-func runfibotopdown() {
+func runFiboTopdown() {
 	n := 40
 	cache := make([]int, n+1)
 	for i := range cache {
@@ -71,14 +71,14 @@ func runfibotopdown() {
 	println("Fibonacci de", n, ":", result)
 }
 
-func runfibobottomup() {
+func runFiboBottomup() {
 	n := 40
 
 	result := fiboBottomUp(n)
 	println("Fibonacci de", n, ":", result)
 }
 
-func rundumbfibo() {
+func runDumbfibo() {
 	n := 40
 
 	result := dumbFibo(n)
