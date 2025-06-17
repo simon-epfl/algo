@@ -11,6 +11,12 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "fibotop":
+		runfibotopdown()
+	case "fibobottom":
+		runfibobottomup()
+	case "fibo":
+		rundumbfibo()
 	case "longest_common_seq":
 		runLongestCommonSubsequence()
 	case "matrix_chain_mult":
