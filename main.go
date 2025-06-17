@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "optimal_bst":
+		runOptimalBst()
 	case "changemaking":
 		runchangemaking()
 	case "fibotop":
