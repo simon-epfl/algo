@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "changemaking":
+		runchangemaking()
 	case "fibotop":
 		runfibotopdown()
 	case "fibobottom":
