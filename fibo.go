@@ -1,5 +1,17 @@
 package main
 
+/*
+➜  algo git:(main) ✗ go build -o algo && ./algo fibo
+Fibonacci de 40 : 165580141
+Exec: 468230 µs
+➜  algo git:(main) ✗ go build -o algo && ./algo fibotop
+Fibonacci de 40 : 165580141
+Exec: 10 µs
+➜  algo git:(main) ✗ go build -o algo && ./algo fibodown
+Unknown algorithm
+Exec: 6 µs
+*/
+
 func dumbFibo(n int) int {
 
 	if n == 0 || n == 1 {
@@ -49,7 +61,7 @@ func fiboTopDown(n int, cache []int) int {
 }
 
 func runfibotopdown() {
-	n := 100
+	n := 40
 	cache := make([]int, n+1)
 	for i := range cache {
 		cache[i] = -9999
@@ -60,14 +72,14 @@ func runfibotopdown() {
 }
 
 func runfibobottomup() {
-	n := 100
+	n := 40
 
 	result := fiboBottomUp(n)
 	println("Fibonacci de", n, ":", result)
 }
 
 func rundumbfibo() {
-	n := 100
+	n := 40
 
 	result := dumbFibo(n)
 	println("Fibonacci de", n, ":", result)
