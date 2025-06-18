@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "ford_fulkerson":
+		fordFulkerson()
 	case "strongly_connected_components":
 		stronglyConnectedComponents()
 	case "topological_sort":

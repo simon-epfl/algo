@@ -33,6 +33,10 @@ type Edge struct {
 	Weight      int
 	Origin      *Vertex
 	Destination *Vertex
+
+	// Flows
+	Capacity int
+	Flow     int
 }
 
 /*
