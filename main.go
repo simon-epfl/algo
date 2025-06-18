@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "connected_components":
+		connectedComponents()
 	case "ford_fulkerson":
 		fordFulkerson()
 	case "strongly_connected_components":

@@ -23,8 +23,8 @@ func longestCommonSubsequence(str1 string, str2 string) int {
 		)
 	} else {
 		return max(
-			longestCommonSubsequence(str1[0:len1-1], str2),
-			longestCommonSubsequence(str1, str2[0:len2-1]),
+			longestCommonSubsequence(str1[0:len1-1], str2), // D BAB 0
+			longestCommonSubsequence(str1, str2[0:len2-1]), // DA BA 1
 		)
 	}
 }
@@ -94,8 +94,8 @@ func longestCommonSubsequenceFast(str1 string, str2 string) (int, [][]Direction)
 }
 
 func runLongestCommonSubsequence() {
-	str1 := "abcdefabc"
-	str2 := "abcabc"
+	str1 := "dac"
+	str2 := "bab"
 
 	result, directions := longestCommonSubsequenceFast(str1, str2)
 	println("Length of LCS is:", result)
