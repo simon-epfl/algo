@@ -5,12 +5,25 @@ import (
 	"math"
 )
 
+type Color int
+
+const (
+	ColorWhite = iota
+	ColorGray
+	ColorBlack
+)
+
 type Vertex struct {
 	Name     string
 	Distance int
 	Previous *Vertex
 
 	IsInfinity bool
+
+	// DFS
+	DiscoveryTime int
+	FinishTime    int
+	Color         Color
 }
 
 type Edge struct {
