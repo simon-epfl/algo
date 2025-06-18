@@ -6,6 +6,27 @@ import (
 	"sort"
 )
 
+/*
+
+Intuition : visualiser que le premier DFS va construire G^SCC, c'est-à-dire un graphe
+acyclique où chaque noeud représente un SCC, avec une arête entre deux noeuds.
+
+Par exemple SCCA --> SCCB. Maintenant comment séparer les deux ?
+
+En fait ce qu'on fait c'est qu'on transpose SCCA <-- SCCB
+(à l'intérieur des SCCs ça ne change rien, peu importe le sens des flèches)
+
+mais entre les SCCs oui
+et comme dans notre premier exemple, le fait qu'on ait fini en dernier avec A
+veut dire que B peut être potentiellement un enfant de A,
+alors en inversant on est sûr que on va afficher QUE B puis QUE A.
+
+SCCA <-- SCCB
+
+on commence donc par A, et on pourra pas atteindre B depuis A sans repasser par la boucle principale
+grâce au fait qu'on transpose !
+*/
+
 func sccDfsVisit(vertex *sh.Vertex, adjacents map[*sh.Vertex][]*sh.Vertex, time *int) {
 	*time++
 	vertex.DiscoveryTime = *time
