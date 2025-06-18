@@ -68,6 +68,10 @@ func runPrims() {
 
 	// on veut stocker les edges du graphe minimum
 	minimumSpanningTreeEdges := make([]*sh.Edge, 0)
+
+	// va garder en mémoire la meilleure arête pour chaque sommet
+	// celle qui est connectée au graphe minimum
+	// et la plus proche
 	bestEdge := make(map[*sh.Vertex]*sh.Edge)
 
 	for len(queue) > 0 {
