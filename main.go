@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "topological_sort":
+		topologicalSort()
 	case "dfs":
 		dfs()
 	case "bfs":

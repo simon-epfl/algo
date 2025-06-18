@@ -41,7 +41,7 @@ func dfs() {
 	// https://moodle.epfl.ch/pluginfile.php/3434625/mod_resource/content/1/algorithms%20I%20-%20Lecture%2013.pdf
 	// slide 43
 
-	s := &sh.Vertex{Name: "s"}
+	// sommets
 	a := &sh.Vertex{Name: "a"}
 	b := &sh.Vertex{Name: "b"}
 	c := &sh.Vertex{Name: "c"}
@@ -51,25 +51,32 @@ func dfs() {
 	g := &sh.Vertex{Name: "g"}
 	h := &sh.Vertex{Name: "h"}
 
-	vertices := []*sh.Vertex{s, a, b, c, d, e, f, g, h}
+	vertices := []*sh.Vertex{b, a, c, d, e, f, g, h}
 
+	// arêtes orientées (poids = 1 partout)
 	edges := []*sh.Edge{
-		{Weight: 1, Origin: s, Destination: c}, // s → c
-		{Weight: 1, Origin: s, Destination: a}, // s → a
-		{Weight: 1, Origin: a, Destination: d}, // a → d
-		{Weight: 1, Origin: b, Destination: d}, // b → d
+		{Weight: 1, Origin: a, Destination: g}, // a → g
+		{Weight: 1, Origin: a, Destination: h}, // a → h
+
 		{Weight: 1, Origin: b, Destination: a}, // b → a
+		{Weight: 1, Origin: b, Destination: c}, // b → c
+		{Weight: 1, Origin: b, Destination: g}, // b → g
+
 		{Weight: 1, Origin: c, Destination: d}, // c → d
-		{Weight: 1, Origin: d, Destination: b}, // d → b
-		{Weight: 1, Origin: c, Destination: f}, // c → f
-		{Weight: 1, Origin: f, Destination: e}, // f → e
-		{Weight: 1, Origin: f, Destination: h}, // f → h
+		{Weight: 1, Origin: c, Destination: g}, // c → g
+
+		{Weight: 1, Origin: d, Destination: g}, // d → g
+
+		{Weight: 1, Origin: e, Destination: d}, // e → d
+		{Weight: 1, Origin: e, Destination: f}, // e → f
+		{Weight: 1, Origin: e, Destination: c}, // e → c
+
+		{Weight: 1, Origin: g, Destination: h}, // g → h
+
 		{Weight: 1, Origin: f, Destination: g}, // f → g
-		{Weight: 1, Origin: g, Destination: f}, // g → f
-		{Weight: 1, Origin: h, Destination: g}, // h → g
 	}
 
-	sh.InitializeSingleSource(vertices, s)
+	sh.InitializeSingleSource(vertices, b)
 
 	adjacents := make(map[*sh.Vertex][]*sh.Vertex)
 	for _, edge := range edges {
