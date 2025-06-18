@@ -6,6 +6,8 @@ import (
 	"math"
 )
 
+// O(1/2 * E * V) avec bfs shortest path, pas de preuve :(
+
 // en fait cette structure va stocker toutes nos étapes
 // pour reconstruire le chemin augmentant
 // on en a besoin parce qu'une fois qu'on a trouvé ce chemin,
