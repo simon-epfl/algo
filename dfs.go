@@ -34,7 +34,28 @@ func dfsVisit(vertex *sh.Vertex, adjacents map[*sh.Vertex][]*sh.Vertex, time *in
 	vertex.FinishTime = *time
 }
 
-func dfs() {
+func dfs(vertices []*sh.Vertex, edges []*sh.Edge) {
+
+	adjacents := make(map[*sh.Vertex][]*sh.Vertex)
+	for _, edge := range edges {
+		adjacents[edge.Origin] = append(adjacents[edge.Origin], edge.Destination)
+	}
+
+	for _, vertex := range vertices {
+		vertex.Color = sh.ColorWhite
+		vertex.DiscoveryTime = 0
+		vertex.FinishTime = 0
+	}
+
+	time := 0
+	for _, vertex := range vertices {
+		if vertex.Color == sh.ColorWhite {
+			dfsVisit(vertex, adjacents, &time)
+		}
+	}
+}
+
+func runDfs() {
 
 	fmt.Println("DFS")
 
@@ -78,23 +99,7 @@ func dfs() {
 
 	sh.InitializeSingleSource(vertices, b)
 
-	adjacents := make(map[*sh.Vertex][]*sh.Vertex)
-	for _, edge := range edges {
-		adjacents[edge.Origin] = append(adjacents[edge.Origin], edge.Destination)
-	}
-
-	for _, vertex := range vertices {
-		vertex.Color = sh.ColorWhite
-		vertex.DiscoveryTime = 0
-		vertex.FinishTime = 0
-	}
-
-	time := 0
-	for _, vertex := range vertices {
-		if vertex.Color == sh.ColorWhite {
-			dfsVisit(vertex, adjacents, &time)
-		}
-	}
+	dfs(vertices, edges)
 
 	fmt.Println("Temps de découverte et de finition :")
 	for _, vertex := range vertices {

@@ -24,6 +24,9 @@ type Vertex struct {
 	DiscoveryTime int
 	FinishTime    int
 	Color         Color
+
+	// SCC
+	Predecessor *Vertex
 }
 
 type Edge struct {

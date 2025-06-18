@@ -11,10 +11,12 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "strongly_connected_components":
+		stronglyConnectedComponents()
 	case "topological_sort":
 		topologicalSort()
 	case "dfs":
-		dfs()
+		runDfs()
 	case "bfs":
 		bfs()
 	case "optimal_bst":
