@@ -3,6 +3,7 @@ package main
 import (
 	sh "algo/shared"
 	"fmt"
+	"math"
 )
 
 func bfs() {
@@ -25,7 +26,6 @@ func bfs() {
 	vertices := []*sh.Vertex{s, a, b, c, d, e, f, g, h}
 
 	edges := []*sh.Edge{
-		// de la partie gauche
 		{Weight: 1, Origin: s, Destination: c}, // s → c
 		{Weight: 1, Origin: s, Destination: a}, // s → a
 		{Weight: 1, Origin: a, Destination: d}, // a → d
@@ -33,20 +33,19 @@ func bfs() {
 		{Weight: 1, Origin: b, Destination: a}, // b → a
 		{Weight: 1, Origin: c, Destination: d}, // c → d
 		{Weight: 1, Origin: d, Destination: b}, // d → b
-
-		// de la partie droite
 		{Weight: 1, Origin: c, Destination: f}, // c → f
 		{Weight: 1, Origin: f, Destination: e}, // f → e
 		{Weight: 1, Origin: f, Destination: h}, // f → h
-
 		{Weight: 1, Origin: f, Destination: g}, // f → g
 		{Weight: 1, Origin: g, Destination: f}, // g → f
-
 		{Weight: 1, Origin: h, Destination: g}, // h → g
 	}
 
-	for _, v := range vertices {
-		v.Distance = 999999
+	sh.InitializeSingleSource(vertices, s)
+
+	adjacents := make(map[*sh.Vertex][]*sh.Vertex)
+	for _, edge := range edges {
+		adjacents[edge.Origin] = append(adjacents[edge.Origin], edge.Destination)
 	}
 
 	queue := getEmptyCustomQueue()
@@ -65,21 +64,18 @@ func bfs() {
 		fmt.Printf("On traite le sommet %s (distance de %d)\n", vertex.Name, vertex.Distance)
 
 		// trouver tous les voisins du vertex courant
-		for _, edge := range edges {
-			if edge.Origin == vertex {
-				// on a trouvé un voisin!
-				neighbor := edge.Destination
-				fmt.Printf("On a trouvé %s --> %s (distance de %d)\n", vertex.Name, neighbor.Name, neighbor.Distance)
+		for _, neighbor := range adjacents[vertex] {
+			// on a trouvé un voisin!
+			fmt.Printf("On a trouvé %s --> %s (distance de %d)\n", vertex.Name, neighbor.Name, neighbor.Distance)
 
-				if neighbor.Distance == 999999 { // si on n'a pas encore visité ce voisin
-					neighbor.Distance = vertex.Distance + 1
-					queue.Enqueue(CustomQueueItem{
-						Content: neighbor,
-					})
-					fmt.Printf("On sauvegarde source %s --> %s (distance de %d)\n", s.Name, neighbor.Name, neighbor.Distance)
-				} else {
-					fmt.Printf("On a déjà visité le voisin %s (distance de %d), on ne fait rien\n", neighbor.Name, neighbor.Distance)
-				}
+			if neighbor.Distance == math.MaxInt { // si on n'a pas encore visité ce voisin
+				neighbor.Distance = vertex.Distance + 1
+				queue.Enqueue(CustomQueueItem{
+					Content: neighbor,
+				})
+				fmt.Printf("On sauvegarde source %s --> %s (distance de %d)\n", s.Name, neighbor.Name, neighbor.Distance)
+			} else {
+				fmt.Printf("On a déjà visité le voisin %s (distance de %d), on ne fait rien\n", neighbor.Name, neighbor.Distance)
 			}
 		}
 
