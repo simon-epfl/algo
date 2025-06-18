@@ -47,8 +47,11 @@ func runPrims() {
 
 	initialVertex := a
 
-	// []*PriorityItem
 	queue := sh.PriorityQueue(make([]*sh.PriorityItem, 0, len(vertices)))
+	heap.Init(&queue)
+
+	// Map pour garder une référence aux items dans la queue
+	itemMap := make(map[*sh.Vertex]*sh.PriorityItem)
 
 	for _, vertex := range vertices {
 		item := &sh.PriorityItem{
@@ -59,10 +62,9 @@ func runPrims() {
 			item.Priority = 0
 		}
 		vertex.Color = sh.ColorGray // dans la queue
-		queue = append(queue, item)
+		heap.Push(&queue, item)
+		itemMap[vertex] = item
 	}
-
-	heap.Init(&queue)
 
 	// on veut stocker les edges du graphe minimum
 	minimumSpanningTreeEdges := make([]*sh.Edge, 0)
@@ -72,6 +74,12 @@ func runPrims() {
 		// On récupère le sommet avec la plus petite distance
 		item := heap.Pop(&queue).(*sh.PriorityItem)
 		vertex := item.Value.(*sh.Vertex)
+
+		// On ignore les sommets déjà traités (peuvent être présents plusieurs fois dans la queue)
+		if vertex.Color == sh.ColorBlack {
+			continue
+		}
+
 		vertex.Color = sh.ColorBlack // Marquer le sommet comme traité
 
 		fmt.Printf("On traite le sommet %s avec une priorité de %d\n", vertex.Name, item.Priority)
@@ -92,13 +100,7 @@ func runPrims() {
 					break
 				}
 			}
-			var neigh *sh.PriorityItem
-			for _, qItem := range queue {
-				if qItem.Value == neighbor {
-					neigh = qItem
-					break
-				}
-			}
+			neigh := itemMap[neighbor]
 			fmt.Printf("On a un voisin (%s) de %s sur un chemin de poids %d (priorité %d)\n", neighbor.Name, vertex.Name, edge.Weight, neigh.Priority)
 			if (neighbor.Color == sh.ColorGray && edge != nil) && (edge.Weight < neigh.Priority) {
 				fmt.Printf("Le poids de l'arête %s --(%d)--> %s est inférieur à la priorité actuelle %d\n", vertex.Name, edge.Weight, neighbor.Name, neigh.Priority)
