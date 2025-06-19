@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "kruskal":
+		runKruskal()
 	case "prims":
 		runPrims()
 	case "connected_components":

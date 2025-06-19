@@ -18,7 +18,7 @@ func connectedComponents() {
 		{Weight: 1, Origin: b, Destination: c}, // b → c
 	}
 
-	dsets := NewDisjointSet[*sh.Vertex]()
+	dsets := NewCustomDisjointSet[*sh.Vertex]()
 	for _, vertex := range vertices {
 		dsets.MakeSet(vertex)
 	}

@@ -69,3 +69,7 @@ func InitializeSingleSource(vertices []*Vertex, source *Vertex) {
 	source.Distance = 0
 	source.IsInfinity = false
 }
+
+func PrintEdge(edge *Edge) {
+	fmt.Printf("%s -- (%d) --> %s\n", edge.Origin.Name, edge.Weight, edge.Destination.Name)
+}
