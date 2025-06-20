@@ -1,6 +1,8 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 /*
 On a une entrée $[0, 2, -4, 3, -1, 4, 5, 7, -9]$ et on veut trouver le sous-intervalle avec la plus grande somme $[3, -1, 4, 5, 7]$.
@@ -51,6 +53,21 @@ func maxsubarray(array []int, begin int, end int) int {
 	}
 
 	return array[begin]
+}
+
+func maxsubarray_linear(array []int) int {
+
+	maxSoFar := -1
+	maxEndingHere := -1
+
+	for _, item := range array {
+
+		maxEndingHere = max(maxEndingHere+item, item)
+		maxSoFar = max(maxEndingHere, maxSoFar)
+
+	}
+
+	return maxSoFar
 }
 
 func runMaxsubarray() {
