@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "fast_power":
+		runFastPower()
 	case "kruskal":
 		runKruskal()
 	case "prims":
