@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "binary_search":
+		runBinarySearch()
 	case "fast_power":
 		runFastPower()
 	case "kruskal":
