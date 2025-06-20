@@ -1,5 +1,7 @@
 package main
 
+// c'est une double liste chaînée
+// (on peut aller dans les deux sens)
 type CustomLinkedListItem struct {
 	Prev  *CustomLinkedListItem
 	Value any
