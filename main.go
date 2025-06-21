@@ -11,6 +11,8 @@ func main() {
 	startTime := time.Now()
 
 	switch algoName {
+	case "justin_bieber":
+		runMaxProfit()
 	case "binary_search":
 		runBinarySearch()
 	case "fast_power":
